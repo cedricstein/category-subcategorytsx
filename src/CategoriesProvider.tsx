@@ -7,7 +7,14 @@ type Category = {
   id: number;
   label: string;
   icon: React.ReactNode;
+  subcategories: Subcategory[];
 };
+
+type Subcategory = {
+  id: number;
+  label: string;
+};
+
 
 export const CategoriesContext = React.createContext({
   categories: [] as Category[],
@@ -27,23 +34,25 @@ export const useCategoriesContext = () => {
     );
   return context;
 };
-
 export const CategoriesProvider: React.FC<Props> = ({ children }) => {
   const [categories, setCategories] = React.useState<Category[]>([
     {
       id: 1,
       label: "Inbox",
       icon: <InboxIcon />,
+      subcategories: [],
     },
     {
       id: 2,
       label: "Mail",
       icon: <MailIcon />,
+      subcategories: [],
     },
     {
       id: 3,
       label: "Alarm",
       icon: <AlarmIcon />,
+      subcategories: [],
     },
   ]);
 
